@@ -768,8 +768,9 @@
                     >
                         <li>
                             <Link
-                                :href="route('logout')"
-                                method="post"
+                                href="route('logout')"
+                                method="POST"
+                                as="button"
                                 class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                 >Sign out</Link
                             >

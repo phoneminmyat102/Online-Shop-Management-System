@@ -25,5 +25,5 @@ import Navbar from './Navbar.vue';
 import Sidebar from './Sidebar.vue';
 onMounted(() => {
     initFlowbite();
-})
+});
 </script>
