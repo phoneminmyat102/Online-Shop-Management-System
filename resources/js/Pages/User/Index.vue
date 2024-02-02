@@ -2,14 +2,20 @@
 import { onMounted } from "vue";
 import { initFlowbite } from "flowbite";
 import UserLayout from "./Layouts/UserLayout.vue";
-import Hero from './Layouts/Hero.vue'
+import Hero from "./Layouts/Hero.vue";
+import { Link } from "@inertiajs/vue3";
+import { router } from "@inertiajs/vue3";
+import Products from "../User/Components/Products.vue";
 onMounted(() => {
     initFlowbite();
+});
+
+defineProps({
+    products: Array,
 });
 </script>
 <template>
     <user-layout>
-
         <!-- hero section -->
         <Hero></Hero>
         <!-- end -->
@@ -23,63 +29,21 @@ onMounted(() => {
                     Latest Products
                 </h2>
 
+                <!-- products -->
                 <div
                     class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
                 >
-                    <div class="group relative">
-                        <div
-                            class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"
-                        >
-                            <img
-                                src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                                alt="Front of men&#039;s Basic Tee in black."
-                                class="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                            />
-                        </div>
-                        <div class="mt-4 flex justify-between">
-                            <div>
-                                <h3 class="text-sm text-gray-700">
-                                    <a href="#">
-                                        <span
-                                            aria-hidden="true"
-                                            class="absolute inset-0"
-                                        ></span>
-                                        Basic Tee
-                                    </a>
-                                </h3>
-                                <p class="mt-1 text-sm text-gray-500">Black</p>
-                            </div>
-                            <p class="text-sm font-medium text-gray-900">$35</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative">
-                        <div
-                            class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"
-                        >
-                            <img
-                                src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                                alt="Front of men&#039;s Basic Tee in black."
-                                class="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                            />
-                        </div>
-                        <div class="mt-4 flex justify-between">
-                            <div>
-                                <h3 class="text-sm text-gray-700">
-                                    <a href="#">
-                                        <span
-                                            aria-hidden="true"
-                                            class="absolute inset-0"
-                                        ></span>
-                                        Basic Tee
-                                    </a>
-                                </h3>
-                                <p class="mt-1 text-sm text-gray-500">Black</p>
-                            </div>
-                            <p class="text-sm font-medium text-gray-900">$35</p>
-                        </div>
-                    </div>
-                    <!-- More products... -->
+                    <Products :products="products"></Products>
+                    <!-- end  -->
+                </div>
+                <div class="flex justify-center mt-5">
+                    <Link
+                        :href="route('products.index')"
+                        type="button"
+                        class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                    >
+                        More Options
+                    </Link>
                 </div>
             </div>
         </div>

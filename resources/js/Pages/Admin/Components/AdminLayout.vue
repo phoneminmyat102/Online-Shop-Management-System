@@ -2,7 +2,7 @@
     <div class="antialiased bg-gray-50 dark:bg-gray-900">
 
         <!-- nav start -->
-            <navbar></navbar>
+            <navbar :auth="auth"></navbar>
         <!-- nav end -->
    
         <!-- Sidebar -->
@@ -21,8 +21,12 @@
 <script setup>
 import { onMounted } from 'vue';
 import { initFlowbite } from 'flowbite';
+import { usePage } from "@inertiajs/vue3";
 import Navbar from './Navbar.vue';
 import Sidebar from './Sidebar.vue';
+defineProps({
+    auth:Object
+})
 onMounted(() => {
     initFlowbite();
 });

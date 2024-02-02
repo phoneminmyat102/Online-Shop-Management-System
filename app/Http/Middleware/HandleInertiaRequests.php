@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Helpers\Cart;
+use App\Http\Resources\CartResource;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Illuminate\Foundation\Application;
@@ -34,6 +36,8 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+
+            'cart' => new CartResource(Cart::getProductsAndCartItems()),
 
             'flash' => [
                 'success' => fn() => $request->session()->get('success'),

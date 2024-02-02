@@ -1,6 +1,6 @@
 <script setup>
 import { usePage } from "@inertiajs/vue3";
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { ElMessageBox } from "element-plus";
 import { router } from "@inertiajs/vue3";
 import { Plus } from "@element-plus/icons-vue";
@@ -8,6 +8,8 @@ import { Plus } from "@element-plus/icons-vue";
 defineProps({
     products: Array,
 });
+
+// const products = computed(() => usePage.props.product)
 const brands = usePage().props.brands;
 const categories = usePage().props.categories;
 const isAddProduct = ref(false);
@@ -127,7 +129,6 @@ const deleteProduct = async (product, index) => {
             try {
                 router.delete("products/destroy/" + product.id, {
                     onSuccess: (page) => {
-                        console.log('deletred aoifhgsosdfh')
                         // this.delete(product, index);
                         Swal.fire({
                             toast: true,

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Models\Product;
 use App\Models\Category;
@@ -15,12 +16,13 @@ class ProductController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
         $products = Product::with('category', 'brand', 'product_images')->get();
         // dd($products);
         $brands = Brand::get();
         $categories = Category::get();
 
-        return Inertia::render('Admin/Product/Index', ['products' => $products, 'brands' => $brands, 'categories' => $categories]);
+        return Inertia::render('Admin/Product/Index', ['products' => $products, 'brands' => $brands, 'categories' => $categories, 'user' => $user]);
     }
 
     public function store(Request $request)
